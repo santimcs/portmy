@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  market: MyString
+  price: 9.99
+  max_price: 9.99
+  min_price: 9.99
+  pe: 9.99
+  pbv: 9.99
+  paid_up: 9.99
+  market_cap: 9.99
+  daily_volume: 9.99
+  beta: 9.99
+  ticker: one
+
+two:
+  name: MyString
+  market: MyString
+  price: 9.99
+  max_price: 9.99
+  min_price: 9.99
+  pe: 9.99
+  pbv: 9.99
+  paid_up: 9.99
+  market_cap: 9.99
+  daily_volume: 9.99
+  beta: 9.99
+  ticker: two

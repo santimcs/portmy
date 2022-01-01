@@ -1,0 +1,2 @@
+module ProfitsHelper
+end

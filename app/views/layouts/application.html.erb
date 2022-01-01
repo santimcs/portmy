@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>
+            <% if content_for?(:title) %>
+                <%= yield :title %>
+            <% else %>
+                PortMy
+            <% end %>
+        </title>
+    	<%= csrf_meta_tags %>
+        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    </head>
+
+    <body class="<%= controller.controller_name %>">
+  	    <div id="banner">
+  		    <%= image_tag 'logo_en.jpg', alt: 'SetTrade' %>
+  		    <span class="title">
+                <%= @page_title || "Profits" %>
+            </span>
+  	    </div>
+  	    <div id="columns">
+  		    <div id="side">
+                <ul>
+                    <li><%= link_to 'Home', root_path %></li>
+
+                    <li><%= link_to 'Profits Grid', "/list_profits" %></li>
+                    <li><%= link_to 'Discount', discounts_path %></li>
+                    
+                    <li><%= link_to 'Portfolios', portfolios_path %></li>
+                    <li><%= link_to 'Below Disc', "below_disc" %></li>
+                    <li><%= link_to 'New Low', "new_low" %></li>
+                    <li><%= link_to 'Buy Alert', "/list_buy_alert" %></li>
+                    <li><%= link_to 'Sell Alert', "/list_sell_alert" %></li>
+
+                    <li><%= link_to 'Profits-Q1', "/list_profits_q1" %></li>
+                    <li><%= link_to 'Profits-Q2', "/list_profits_q2" %></li>
+                    <li><%= link_to 'Profits-Q3', "/list_profits_q3" %></li>
+                    <li><%= link_to 'Profits-Q4', "/list_profits_q4" %></li>
+                    <li><%= link_to 'Daily Price', daily_prices_path %></li>
+
+                    <li><%= link_to 'Tickers', tickers_path %></li>
+                    <li><%= link_to 'Stocks', stocks_path %></li>
+                    <li><%= link_to 'Profits', profits_path %></li>
+                </ul>
+  		    </div> <!-- end of side -->
+  		    <div class="container-fluid" id="main">
+    		  <%= yield %>
+    	   </div> <!-- end of containter -->
+        </div>	<!-- end of columns -->
+    </body>
+</html>

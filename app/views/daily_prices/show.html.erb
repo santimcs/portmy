@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @daily_price.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @daily_price.date %>
+</p>
+
+<p>
+  <strong>Open price:</strong>
+  <%= @daily_price.open_price %>
+</p>
+
+<p>
+  <strong>Max price:</strong>
+  <%= @daily_price.max_price %>
+</p>
+
+<p>
+  <strong>Min price:</strong>
+  <%= @daily_price.min_price %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @daily_price.price %>
+</p>
+
+<p>
+  <strong>Qty:</strong>
+  <%= @daily_price.qty %>
+</p>
+
+<p>
+  <strong>Ticker:</strong>
+  <%= @daily_price.ticker_id %>
+</p>
+
+<%= link_to 'Edit', edit_daily_price_path(@daily_price) %> |
+<%= link_to 'Back', daily_prices_path %>

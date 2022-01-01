@@ -1,0 +1,98 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @profit.name %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @profit.year %>
+</p>
+
+<p>
+  <strong>Quarter:</strong>
+  <%= @profit.quarter %>
+</p>
+
+<p>
+  <strong>Latest amt y:</strong>
+  <%= @profit.latest_amt_y %>
+</p>
+
+<p>
+  <strong>Previous amt y:</strong>
+  <%= @profit.previous_amt_y %>
+</p>
+
+<p>
+  <strong>Inc amt y:</strong>
+  <%= @profit.inc_amt_y %>
+</p>
+
+<p>
+  <strong>Inc pct y:</strong>
+  <%= @profit.inc_pct_y %>
+</p>
+
+<p>
+  <strong>Latest amt q:</strong>
+  <%= @profit.latest_amt_q %>
+</p>
+
+<p>
+  <strong>Previous amt q:</strong>
+  <%= @profit.previous_amt_q %>
+</p>
+
+<p>
+  <strong>Inc amt q:</strong>
+  <%= @profit.inc_amt_q %>
+</p>
+
+<p>
+  <strong>Inc pct q:</strong>
+  <%= @profit.inc_pct_q %>
+</p>
+
+<p>
+  <strong>Q amt c:</strong>
+  <%= @profit.q_amt_c %>
+</p>
+
+<p>
+  <strong>Y amt:</strong>
+  <%= @profit.y_amt %>
+</p>
+
+<p>
+  <strong>Inc amt py:</strong>
+  <%= @profit.inc_amt_py %>
+</p>
+
+<p>
+  <strong>Inc pct py:</strong>
+  <%= @profit.inc_pct_py %>
+</p>
+
+<p>
+  <strong>Q amt p:</strong>
+  <%= @profit.q_amt_p %>
+</p>
+
+<p>
+  <strong>Inc amt pq:</strong>
+  <%= @profit.inc_amt_pq %>
+</p>
+
+<p>
+  <strong>Inc pct pq:</strong>
+  <%= @profit.inc_pct_pq %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= link_to(@profit.ticker.website, "http://"+@profit.ticker.website, :target => "_new") %></p>
+
+<%= link_to 'Edit', edit_profit_path(@profit) %> |
+<%= link_to 'Back', list_profits_path %>

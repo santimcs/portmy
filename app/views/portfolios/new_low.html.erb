@@ -1,0 +1,141 @@
+<p id="notice"><%= notice %></p>
+<% content_for :title, 'Portfolios' %>
+<h1>Portfolios</h1>
+<% rate = number_with_precision(@discounts.rate * 100, precision: 0) %>
+<h4><%= 'Discount rate = ' + rate.to_s + '%' %></h4>
+<% display = 'F' %>
+
+<div class="row">
+  <div class="col-sm-1 alignL">
+    <b><%= 'Name' %></b>
+  </div>
+  <div class="col-sm-1 alignC">
+    <b><%= 'Date' %></b>
+  </div>
+  <div class="col-sm-1 alignR">
+    <b><%= 'Qty' %></b>
+  </div>
+  <div class="col-sm-1 alignR">
+    <b><%= 'Cost' %></b>
+  </div>  
+  <div class="col-sm-2 alignR">
+    <b><%= 'Amount' %></b>
+  </div>
+  <div class="col-sm-1 alignR">
+    <b><%= 'Price' %></b>
+  </div>
+  <div class="col-sm-1 alignR">
+    <b><%= 'Target' %></b>
+  </div>
+  <div class="col-sm-1 alignR">
+    <b><%= 'Last' %></b>
+  </div> 
+  <div class="col-sm-1 alignR">
+    <b><%= 'Sell' %></b>
+  </div>  
+  <div class="col-sm-1 alignR">
+    <b><%= 'Buy' %></b>
+  </div>   
+  <div class="col-sm-1 alignL">
+    <b><%= 'Action' %></b>
+  </div>  
+</div>
+    <% @portfolios.each do |portfolio| %>
+      <% display = 'F' %>
+      <% if portfolio.ticker.daily_price.price <= portfolio.ticker.stock.min_price %>
+      <% display = 'T' %>
+      <% else %>
+      <% display = 'F' %>
+      <% end %>
+      <% if display == 'T' %>
+      <div class="row">
+        <div class="col-sm-1 list_name"><%= portfolio.name %></div>
+        <div class="col-sm-1 alignC"><%= portfolio.date %></div>
+        <div class="col-sm-1 alignR">
+          <b><%= number_with_delimiter(portfolio.buy_qty) %></b><br/>
+          <%= number_with_delimiter(portfolio.comp_qty) %><br/>
+          <%= number_with_delimiter(portfolio.att_qty) %>
+        </div>
+        <div class="col-sm-1 alignR">
+          <b><%= number_with_precision(portfolio.buy_unit_cost, precision: 2, delimiter: ",") %></b><br/>
+          <%= number_with_precision(portfolio.comp_unit_cost, precision: 2, delimiter: ",") %><br/>
+          <%= number_with_precision(portfolio.att_unit_cost, precision: 2, delimiter: ",") %>
+        </div>
+        <div class="col-sm-2 alignR">
+          <%= number_with_precision(portfolio.buy_cost_amt, precision: 2, delimiter: ",") %><br/>
+          <%= number_with_precision(portfolio.comp_cost_amt, precision: 2, delimiter: ",") %><br/>
+          <%= number_with_precision(portfolio.att_cost_amt, precision: 2, delimiter: ",") %>
+        </div>
+        <div class="col-sm-1 alignR">
+          <% if portfolio.ticker.daily_price.max_price >
+            portfolio.ticker.stock.max_price %>
+            <% maxp = portfolio.ticker.daily_price.max_price %>
+          <% else %>
+            <% maxp = portfolio.ticker.stock.max_price %>
+          <% end %>
+
+          <%= number_with_precision(maxp, precision: 2, delimiter: ",") %><br/>
+          <%= number_with_precision(portfolio.ticker.daily_price.price, precision: 2, delimiter: ",") %><br/>
+          <%= number_with_precision(portfolio.ticker.stock.min_price, precision: 2, delimiter: ",") %>
+        </div>   
+
+        <div class="col-sm-1 alignR">
+            <% if portfolio.ticker.consensu %>
+                <%= number_with_precision(portfolio.ticker.consensu.target_price, precision: 2, delimiter: ",") %><br/>
+                <% disc_price = maxp/(1 + @discounts.rate) %>
+                <% if disc_price < portfolio.ticker.stock.min_price %>
+                  <% disc_price = portfolio.ticker.stock.min_price %>
+                <% end %>
+                <%= number_with_precision(disc_price, precision: 2, delimiter: ",") %><br/>
+                <%= portfolio.ticker.consensu.bhs %>
+            <% end %>
+        </div>
+
+        <div class="col-sm-1 alignR">
+            <%= number_with_precision(portfolio.last_sell_price, precision: 2, delimiter: ",") %><br/>
+            <%= 'Sell' %><br/>
+            <%= number_with_delimiter(portfolio.sell_qty) %><br/>
+        </div>
+        <!-- Sell Method & Price -->
+        <div class="col-sm-1 alignR">
+          <%= portfolio.sell_method.titleize %><br/>
+          <% dsp_sell_price = 0.0 %>
+          <% case portfolio.sell_method %>
+          <% when 'max_price' %>
+          <%      dsp_sell_price = portfolio.ticker.stock.max_price %>
+          <% when 'consensus' %>
+          <%      dsp_sell_price = portfolio.ticker.consensu.target_price %>
+          <% when 'sell_target' %>
+          <%      dsp_sell_price = portfolio.target_sell_price %>          
+          <% end %>
+          <%= number_with_precision(dsp_sell_price, precision: 2, delimiter: ",") %><br/>
+        </div>
+        <!-- Buy Method & Price -->
+        <div class="col-sm-1 alignR">
+          <%= portfolio.buy_method.titleize %><br/>
+          <% dsp_buy_price = 0.0 %>
+          <% case portfolio.buy_method %>
+          <% when 'min_price' %>
+          <%      dsp_buy_price = portfolio.ticker.stock.min_price %>
+          <% when 'tenpc_disc' %>
+          <%      dsp_buy_price = portfolio.ticker.stock.max_price/1.1 %>
+          <% when 'buy_target' %>
+          <%      dsp_buy_price = portfolio.buy_unit_cost %>          
+          <% end %>
+          <%= number_with_precision(dsp_buy_price, precision: 2, delimiter: ",") %><br/>
+        </div>
+
+        <div class="col-sm-1 list_actions">
+          <%= link_to 'Show', portfolio %><br/>
+          <%= link_to 'Edit', edit_portfolio_path(portfolio) %><br/>
+          <%= link_to 'Delete', portfolio, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+      <br/>
+      <% end %>
+    <% end %>
+
+
+<br>
+
+<%= link_to 'New Portfolio', new_portfolio_path %>

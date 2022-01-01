@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+<% content_for :title, 'Sell' %>
+<div class ="page-header text-left" > 
+  <h1><%= "Sell Alert" %></h1>
+</div>
+
+<table  id="sell_alert" class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Qty</th>
+      <th>Target</th>  
+      <th>Price</th>
+      <th>Diff</th> 
+      <th>Spd</th>             
+      <th>Cost</th>            
+      <th>Max</th> 
+      <th>IAA</th>   
+      <th>Method</th>        
+    </tr>
+  </thead>
+  <tbody>
+    <% @portfolios.each do |portfolio| %>
+      <% spreads = num_of_spread(portfolio.ticker.daily_price.price,portfolio.target_sell_price).to_i %>
+      <tr>
+        <td><%= portfolio.name %></td>
+        <td><%= number_with_delimiter(portfolio.sell_qty, delimiter: ",") %></td>
+        <td><%= number_with_precision(portfolio.target_sell_price, precision: 2) %></td>
+        <td><%= number_with_precision(portfolio.ticker.daily_price.price, precision: 2) %></td>
+        <% diff = portfolio.target_sell_price - portfolio.ticker.daily_price.price %>
+        <td><%= number_with_precision(diff, precision: 2) %></td>  
+        <td><%= spreads %></td>              
+        <td><%= number_with_precision(portfolio.comp_unit_cost, precision: 2) %></td>
+        <td><%= number_with_precision(portfolio.ticker.stock.max_price, precision: 2) %></td>
+        <% if portfolio.ticker.consensu %>
+        <td><%= number_with_precision(portfolio.ticker.consensu.target_price, precision: 2) %></td>
+        <% else %>
+        <td><%= 0.00 %></td>  
+        <% end %>
+        <td><%= portfolio.sell_method.titleize %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

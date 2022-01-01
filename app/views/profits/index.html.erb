@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+<% content_for :title, 'Profits' %>
+<h1>Profits</h1>
+<table class="profits">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Year</th>
+      <th>Q</th>
+      <th>K</th>      
+      <th>Latest Amt</th>
+      <th>Previous Amt</th>
+      <th>Inc Amt</th>
+      <th>Percent</th>
+      <th>Mean</th>
+      <th>Std</th>      
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @profits.each do |profit| %>
+      <tr class="<%= cycle('list_line_odd','list_line_even') %>">
+        <td class="alignL"><%= profit.name %></td>
+        <td class="alignL"><%= profit.year %></td>
+        <td class="alignL"><%= profit.quarter %></td>
+        <td class="alignL"><%= profit.kind %></td>        
+        <td class="alignR">
+          <%= number_with_precision(profit.latest_amt_y, precision: 0, delimiter: ',') %><br/>
+          <%= number_with_precision(profit.latest_amt_q, precision: 0, delimiter: ',') %><br/>
+          <%= number_with_precision(profit.q_amt_c, precision: 0, delimiter: ',') %><br/>
+          <%= number_with_precision(profit.q_amt_c, precision: 0, delimiter: ',') %>
+        </td>
+        <td class="alignR">
+          <%= number_with_precision(profit.previous_amt_y, precision: 0, delimiter: ',') %><br/>
+          <%= number_with_precision(profit.previous_amt_q, precision: 0, delimiter: ',') %><br/>
+          <%= number_with_precision(profit.y_amt, precision: 0, delimiter: ',') %><br/>
+          <%= number_with_precision(profit.q_amt_p, precision: 0, delimiter: ',') %>
+        </td>
+        <td class="alignR">
+          <%= number_with_precision(profit.inc_amt_y, precision: 0, delimiter: ',') %><br/>
+          <%= number_with_precision(profit.inc_amt_q, precision: 0, delimiter: ',') %><br/>
+          <%= number_with_precision(profit.inc_amt_py, precision: 0, delimiter: ',') %><br/>
+          <%= number_with_precision(profit.inc_amt_pq, precision: 0, delimiter: ',') %>
+        </td>
+        <td class="alignR">
+          <%= number_with_precision(profit.inc_pct_y, precision: 2) %><br/>
+          <%= number_with_precision(profit.inc_pct_q, precision: 2) %><br/>
+          <%= number_with_precision(profit.inc_pct_py, precision: 2) %><br/>
+          <%= number_with_precision(profit.inc_pct_pq, precision: 2) %>
+        </td>
+       <td class="alignR"><%= number_with_precision(profit.mean_pct, precision: 0) %></td>
+        <td class="alignR"><%= number_with_precision(profit.std_pct, precision: 0) %></td>        
+        <td class="list_actions">
+          <%= link_to 'Show', profit %><br/>
+          <%= link_to 'Edit', edit_profit_path(profit) %><br/>
+          <%= link_to 'Destroy', profit, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @ticker.name %>
+</p>
+
+<p>
+  <strong>Full name:</strong>
+  <%= @ticker.full_name %>
+</p>
+
+<p>
+  <strong>Sector:</strong>
+  <%= @ticker.sector %>
+</p>
+
+<p>
+  <strong>Subsector:</strong>
+  <%= @ticker.subsector %>
+</p>
+
+<p>
+  <strong>Market:</strong>
+  <%= @ticker.market %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @ticker.website %>
+</p>
+
+<%= link_to 'Edit', edit_ticker_path(@ticker) %> |
+<%= link_to 'Back', tickers_path %>

@@ -1,0 +1,52 @@
+<%= form_with(model: daily_price, local: true) do |form| %>
+  <% if daily_price.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(daily_price.errors.count, "error") %> prohibited this daily_price from being saved:</h2>
+
+      <ul>
+      <% daily_price.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :ticker_id %><br />
+    <%= form.collection_select :ticker_id, Ticker.all, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date, id: :daily_price_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :open_price %>
+    <%= form.text_field :open_price, id: :daily_price_open_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :max_price %>
+    <%= form.text_field :max_price, id: :daily_price_max_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :min_price %>
+    <%= form.text_field :min_price, id: :daily_price_min_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :daily_price_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :qty %>
+    <%= form.number_field :qty, id: :daily_price_qty %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

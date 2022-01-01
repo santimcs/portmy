@@ -1,0 +1,107 @@
+<%= form_with(model: profit, local: true) do |form| %>
+  <% if profit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(profit.errors.count, "error") %> prohibited this profit from being saved:</h2>
+
+      <ul>
+      <% profit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :profit_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :year %>
+    <%= form.text_field :year, id: :profit_year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quarter %>
+    <%= form.text_field :quarter, id: :profit_quarter %>
+  </div>
+
+  <div class="field">
+    <%= form.label :latest_amt_y %>
+    <%= form.text_field :latest_amt_y, id: :profit_latest_amt_y %>
+  </div>
+
+  <div class="field">
+    <%= form.label :previous_amt_y %>
+    <%= form.text_field :previous_amt_y, id: :profit_previous_amt_y %>
+  </div>
+
+  <div class="field">
+    <%= form.label :inc_amt_y %>
+    <%= form.text_field :inc_amt_y, id: :profit_inc_amt_y %>
+  </div>
+
+  <div class="field">
+    <%= form.label :inc_pct_y %>
+    <%= form.text_field :inc_pct_y, id: :profit_inc_pct_y %>
+  </div>
+
+  <div class="field">
+    <%= form.label :latest_amt_q %>
+    <%= form.text_field :latest_amt_q, id: :profit_latest_amt_q %>
+  </div>
+
+  <div class="field">
+    <%= form.label :previous_amt_q %>
+    <%= form.text_field :previous_amt_q, id: :profit_previous_amt_q %>
+  </div>
+
+  <div class="field">
+    <%= form.label :inc_amt_q %>
+    <%= form.text_field :inc_amt_q, id: :profit_inc_amt_q %>
+  </div>
+
+  <div class="field">
+    <%= form.label :inc_pct_q %>
+    <%= form.text_field :inc_pct_q, id: :profit_inc_pct_q %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_amt_c %>
+    <%= form.text_field :q_amt_c, id: :profit_q_amt_c %>
+  </div>
+
+  <div class="field">
+    <%= form.label :y_amt %>
+    <%= form.text_field :y_amt, id: :profit_y_amt %>
+  </div>
+
+  <div class="field">
+    <%= form.label :inc_amt_py %>
+    <%= form.text_field :inc_amt_py, id: :profit_inc_amt_py %>
+  </div>
+
+  <div class="field">
+    <%= form.label :inc_pct_py %>
+    <%= form.text_field :inc_pct_py, id: :profit_inc_pct_py %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_amt_p %>
+    <%= form.text_field :q_amt_p, id: :profit_q_amt_p %>
+  </div>
+
+  <div class="field">
+    <%= form.label :inc_amt_pq %>
+    <%= form.text_field :inc_amt_pq, id: :profit_inc_amt_pq %>
+  </div>
+
+  <div class="field">
+    <%= form.label :inc_pct_pq %>
+    <%= form.text_field :inc_pct_pq, id: :profit_inc_pct_pq %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

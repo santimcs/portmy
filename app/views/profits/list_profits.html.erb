@@ -1,0 +1,103 @@
+<p id="notice"><%= notice %></p>
+<% content_for :title, 'Grid' %>
+<h1>Profits Grid</h1>
+<% rate = number_with_precision(@discounts.rate * 100, precision: 0) %>
+<h4><%= 'Discount rate = ' + rate.to_s + '%' %></h4>
+<%= form_tag("/list_profits", method: "get", :class => "form-inline") do %>
+  <div class="checkbox"> 
+    <label for="lower">  Lower  </label>  <%= check_box_tag "profit[methods][]", "lower" %>
+  </div> 
+  <div class="checkbox"> 
+    <label for="higher">  Higher  </label>  <%= check_box_tag "profit[methods][]", "higher" %>
+  </div> 
+  <%= submit_tag("Search",:class => " btn btn-success btn-xs active") %>
+<% end %>
+<br/>
+
+<% @profits.each do |profit| %>
+  <div class="row">
+
+    <div class="col-sm-1 alignC">
+      <b><%= profit.name %></b><br/>
+      <%= profit.year %><br/>     
+      <%= profit.quarter %><br/>  
+      <%= profit.kind %>   
+    </div>
+
+    <div class="col-sm-2 alignR">
+      <%= number_with_precision(profit.latest_amt_y, precision: 0, delimiter: ",") %><br/><br/>
+      <%= number_with_precision(profit.q_amt_c, precision: 0, delimiter: ",") %>
+    </div>  
+
+    <div class="col-sm-1 alignR">
+      <%= number_with_precision(profit.previous_amt_y, precision: 0, delimiter: ",") %><br/>
+      <%= number_with_precision(profit.previous_amt_q, precision: 0, delimiter: ",") %><br/>
+      <%= number_with_precision(profit.y_amt, precision: 0, delimiter: ",") %><br/>
+      <%= number_with_precision(profit.q_amt_p, precision: 0, delimiter: ",") %>
+    </div>
+
+    <div class="col-sm-1 alignR">
+      <%= number_with_precision(profit.inc_amt_y, precision: 0, delimiter: ",") %><br/>
+      <%= number_with_precision(profit.inc_amt_q, precision: 0, delimiter: ",") %><br/>
+      <%= number_with_precision(profit.inc_amt_py, precision: 0, delimiter: ",") %><br/>
+      <%= number_with_precision(profit.inc_amt_pq, precision: 0, delimiter: ",") %>
+    </div>
+
+    <div class="col-sm-1 alignR">
+      <%= number_with_precision(profit.inc_pct_y, precision: 2, delimiter: ",") %><br/>
+      <%= number_with_precision(profit.inc_pct_q, precision: 2, delimiter: ",") %><br/>
+      <%= number_with_precision(profit.inc_pct_py, precision: 2, delimiter: ",") %><br/>
+      <%= number_with_precision(profit.inc_pct_pq, precision: 2, delimiter: ",") %>
+    </div>
+
+    <div class="col-sm-1 alignR">
+      <b><%= 'Mean' %></b><br/>
+      <%= number_with_precision(profit.mean_pct, precision: 2, delimiter: ",") %><br/>
+      <b><%= 'Std' %></b><br/>
+      <%= number_with_precision(profit.std_pct, precision: 2, delimiter: ",") %>
+    </div>
+
+    <div class="col-sm-1 alignR">
+      <b><%= 'Price' %></b><br/>
+      <%= number_with_precision(profit.ticker.stock.max_price, precision: 2, delimiter: ",") %><br/>
+      <%= number_with_precision(profit.ticker.stock.price, precision: 2, delimiter: ",") %><br/>
+      <%= number_with_precision(profit.ticker.stock.min_price, precision: 2, delimiter: ",") %>
+    </div>
+
+    <div class="col-sm-1 alignR">
+      <b><%= 'Target' %></b><br/>
+      <% if profit.ticker.consensu %>
+      <%= number_with_precision(profit.ticker.consensu.target_price, precision: 2, delimiter: ",") %><br/>
+      <% disc_price = profit.ticker.stock.max_price/(1 + @discounts.rate) %>
+      <% if disc_price < profit.ticker.stock.min_price %>
+      <% disc_price = profit.ticker.stock.min_price %>
+      <% end %>
+      <%= number_with_precision(disc_price, precision: 2, delimiter: ",") %><br/>
+      <%= profit.ticker.consensu.bhs %>
+      <% end %>
+    </div>
+
+    <div class="col-sm-1 alignR">
+      <b><%= 'P/E' %></b><br/>
+      <%= number_with_precision(profit.ticker.stock.pe, precision: 2, delimiter: ",") %><br/>
+      <b><%= 'P/BV' %></b><br/>
+      <%= number_with_precision(profit.ticker.stock.pbv, precision: 2, delimiter: ",") %>
+    </div>
+
+    <div class="col-sm-1 alignR">
+      <b><%= 'Volum' %></b><br/>
+      <%= number_with_precision(profit.ticker.stock.daily_volume, precision: 2, delimiter: ",") %><br/>
+      <b><%= 'Beta' %></b><br/>
+      <%= number_with_precision(profit.ticker.stock.beta, precision: 2, delimiter: ",") %>
+    </div>
+
+    <div class="col-sm-1">
+          <b><%= 'Action' %></b><br/>
+          <%= link_to 'Show', profit %><br/>
+          <%= link_to 'Edit', edit_profit_path(profit) %><br/>          
+          <%= link_to 'Delete', profit, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>  
+    
+  </div> <!-- end of row -->
+  <br/>
+<% end %>

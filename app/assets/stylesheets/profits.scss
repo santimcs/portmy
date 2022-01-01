@@ -1,0 +1,78 @@
+// Place all the styles related to the Pools controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.profits {
+    .container {
+        
+        table {
+            border-collapse: collapse;
+        }
+
+        thead th {
+            background-color: #555;
+            color: #fff;
+        }
+
+        .profitstable-homepage {
+  	        color: #555;
+        }
+
+        .alignC {
+
+            text-align: center;
+        }
+
+        .alignL {
+
+  	        text-align: left;
+        }
+
+        .alignR {
+
+  	        text-align: right;
+        }
+
+        .list_image {
+            width:  30px;
+            height: 30px;
+        }
+
+        .list_actions {
+            font-size:    small;
+            text-align:   right;
+            padding-left: 1em;
+        }
+
+        .list_line_even {
+            background:   #e0f8f8;
+        }
+
+        .list_line_odd {
+            background:   #f1fcfc;
+        }
+
+        ul {
+            padding: 0;
+
+            li {
+                list-style: none;
+
+                a {
+                    color: #bfb;
+                    font-size: small;
+                }
+            }
+        }
+
+
+    }
+}
+
+        .stock-name {
+          color: #56a79a;
+  border-bottom: 3px solid #56a79a;
+  padding-bottom: 3px;
+  text-decoration: none;
+  transition: color 0.4s ease;
+        }

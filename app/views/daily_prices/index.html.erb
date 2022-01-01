@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+<% content_for :title, 'Daily Prices' %>
+<h1>Daily Prices</h1>
+
+<table id="daily_prices" class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Open price</th>
+      <th>Max price</th>
+      <th>Min price</th>
+      <th>Price</th>
+      <th>Qty</th>
+      <th>S</th>      
+      <th>E</th>
+      <th>D</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @daily_prices.each do |daily_price| %>
+      <tr>
+        <td><%= daily_price.ticker.name %></td>
+        <td><%= daily_price.date %></td>
+        <td><%= daily_price.open_price %></td>
+        <td><%= daily_price.max_price %></td>
+        <td><%= daily_price.min_price %></td>
+        <td><%= daily_price.price %></td>
+        <td><%= daily_price.qty %></td>
+        <td><%= link_to 'Show', daily_price %></td>
+        <td><%= link_to 'Edit', edit_daily_price_path(daily_price) %></td>
+        <td><%= link_to 'Destroy', daily_price, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Daily Price', new_daily_price_path %>

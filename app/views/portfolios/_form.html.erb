@@ -1,0 +1,124 @@
+<%= form_with(model: portfolio, local: true) do |form| %>
+  <% if portfolio.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(portfolio.errors.count, "error") %> prohibited this portfolio from being saved:</h2>
+
+      <ul>
+      <% portfolio.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<!--
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :portfolio_name %>
+  </div>
+-->
+  <div class="field">
+    <%= form.label :ticker_id %><br />
+    <%= form.collection_select :ticker_id, Ticker.all, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date, id: :portfolio_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :buy_qty %>
+    <%= form.number_field :buy_qty, id: :portfolio_buy_qty %>
+  </div>
+
+  <div class="field">
+    <%= form.label :buy_unit_cost %>
+    <%= form.text_field :buy_unit_cost, id: :portfolio_buy_unit_cost %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comp_qty %>
+    <%= form.number_field :comp_qty, id: :portfolio_comp_qty %>
+  </div>
+<!--
+  <div class="field">
+    <%= form.label :att_qty %>
+    <%= form.number_field :att_qty, id: :portfolio_att_qty %>
+  </div>
+-->
+
+  <div class="field">
+    <%= form.label :comp_unit_cost %>
+    <%= form.text_field :comp_unit_cost, id: :portfolio_comp_unit_cost %>
+  </div>
+<!--
+  <div class="field">
+    <%= form.label :att_unit_cost %>
+    <%= form.text_field :att_unit_cost, id: :portfolio_att_unit_cost %>
+  </div>
+-->
+<!--
+  <div class="field">
+    <%= form.label :buy_cost_amt %>
+    <%= form.text_field :buy_cost_amt, id: :portfolio_buy_cost_amt %>
+  </div>
+-->
+<!--
+  <div class="field">
+    <%= form.label :comp_cost_amt %>
+    <%= form.text_field :comp_cost_amt, id: :portfolio_comp_cost_amt %>
+  </div>
+-->
+<!--
+  <div class="field">
+    <%= form.label :att_cost_amt %>
+    <%= form.text_field :att_cost_amt, id: :portfolio_att_cost_amt %>
+  </div>
+-->
+  <div class="field">
+    <%= form.label :last_sell_price %>
+    <%= form.text_field :last_sell_price, id: :portfolio_last_sell_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sell_qty %>
+    <%= form.text_field :sell_qty, id: :portfolio_sell_qty %>
+  </div>
+
+  <div class="field">
+    <%= form.label :target_sell_price %>
+    <%= form.text_field :target_sell_price, id: :portfolio_target_sell_price %>
+  </div>
+<!--
+  <div class="field">
+    <%= form.label :buy_method %>
+    <%= form.collection_select :buy_method, Portfolio.buy_methods.map{
+       |bm| [bm.first, bm.first.humanize] }, :first, :second %>
+  </div>
+-->
+
+  <div class="field">
+    <%= form.label :buy_method %>
+    <%= form.select(:buy_method, Portfolio.buy_methods.keys.map {|bm| [bm.titleize,bm]}) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sell_method %>
+    <%= form.select(:sell_method, Portfolio.sell_methods.keys.map {|sm| [sm.titleize,sm]}) %>
+  </div>
+<!--
+  <div class="field">
+    <%= form.label :ticker_id %>
+    <%= form.text_field :ticker_id, id: :portfolio_ticker_id %>
+  </div>
+-->
+<!--
+  <div class="field">
+    <%= form.label :ticker_id %><br />
+    <%= form.collection_select :ticker_id, Ticker.all, :id, :name %>
+  </div>
+-->
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

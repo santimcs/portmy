@@ -1,0 +1,132 @@
+<h1>Profits Q2</h1>
+<% content_for :title, 'Q2' %>
+<div class="row">
+    <div class="col-xs-3 col-sm-1 alignC">
+    </div> <!-- end of col1 -->
+    <div class="col-xs-3 col-sm-2 alignR">
+        <%= '21Q2-20Q3' %><br/>
+        <%= '--ditto--' %><br/>
+        <%= ' 2021 Q2 ' %></br>
+        <%= '--ditto--' %>
+    </div> <!-- end of col2 -->
+    <div class="col-xs-3 col-sm-2 alignR">
+        <%= '20Q2-19Q3' %><br/>
+        <%= '21Q1-20Q2' %><br/>
+        <%= ' 2020 Q2 ' %></br>
+        <%= ' 2021 Q1 ' %>        
+    </div> <!-- end of col3 -->
+    <div class="col-xs-3 col-sm-1 alignR">
+        <%= 'Inc./' %><br/>
+        <%= 'Dec.' %><br/>
+        <%= 'Profit' %></br>
+        <%= 'Amt' %>
+    </div> <!-- end of col4 -->
+    <div class="col-xs-2 col-sm-1 alignR">
+        <%= 'Inc./' %><br/>
+        <%= 'Dec.' %><br/>
+        <%= 'Profit' %></br>
+        <%= 'Pct' %>
+    </div> <!-- end of col5 -->
+    <div class="col-xs-2 col-sm-1 alignR">
+        <%= 'Max./' %><br/>
+        <%= 'Min.' %><br/>
+        <%= 'Price' %></br>
+        <%= '52-w' %>
+    </div> <!-- end of col6 -->
+    <div class="col-xs-2 col-sm-2 alignR">
+       <%= 'IAA' %><br/>
+        <%= 'Buy' %><br/>
+        <%= 'Hold' %></br>
+        <%= 'Sell' %>
+    </div> <!-- end of col7 -->
+    <div class="col-xs-2 col-sm-1 alignR">
+    </div> <!-- end of col8 -->
+    <div class="col-xs-4 col-sm-1 alignR">
+        <%= 'Sales' %><br/>
+        <%= 'Amt' %><br/>
+        <%= 'in' %></br>
+        <%= 'mil.' %>
+    </div> <!-- end of col9 -->
+</div> <!-- end of header row -->
+<% yesterday = Date.today - 1 %>
+<% msg = '-'*20 + ' Data as end of ' + Date.yesterday.strftime("%b-%d ") + '-'*20 %>
+
+<footer> <!-- start of cut -->
+<p align="Center"><%= msg %></p>
+<!-- start of loop -->
+<% @profits.each do |profit| %>
+    <% ext_lnk = 'https://www.santiwebsite.com/stocks/'+profit.name+'.html' %>
+
+    <div class="row">
+
+        <div class="col-xs-3 col-sm-1 alignC">
+            <div class="stock-name"><b><%= link_to(profit.name, ext_lnk, target: "_blank") %></b></div><br/>
+            <%= profit.year %><br/>
+            <%= profit.quarter %><br/>
+            <%= number_with_precision(profit.ticker.stock.price, precision: 2, delimiter: ",") %>
+        </div>
+
+        <div class="col-xs-3 col-sm-2 alignR">
+            <%= number_with_precision(profit.latest_amt_y, precision: 0, delimiter: ",") %><br/><br/>
+            <%= number_with_precision(profit.q_amt_c, precision: 0, delimiter: ",") %>
+        </div>
+
+        <div class="col-xs-3 col-sm-2 alignR">
+            <%= number_with_precision(profit.previous_amt_y, precision: 0, delimiter: ",") %><br/>
+            <%= number_with_precision(profit.previous_amt_q, precision: 0, delimiter: ",") %><br/>
+            <%= number_with_precision(profit.y_amt, precision: 0, delimiter: ",") %><br/>
+            <%= number_with_precision(profit.q_amt_p, precision: 0, delimiter: ",") %>
+        </div>
+
+        <div class="col-xs-3 col-sm-1 alignR">
+            <%= number_with_precision(profit.inc_amt_y, precision: 0, delimiter: ",") %><br/>
+            <%= number_with_precision(profit.inc_amt_q, precision: 0, delimiter: ",") %><br/>
+            <%= number_with_precision(profit.inc_amt_py, precision: 0, delimiter: ",") %><br/>
+            <%= number_with_precision(profit.inc_amt_pq, precision: 0, delimiter: ",") %>
+        </div>
+
+        <div class="col-xs-2 col-sm-1 alignR">
+            <%= number_to_percentage(profit.inc_pct_y, precision: 2, delimiter: ",") %><br/>
+            <%= number_to_percentage(profit.inc_pct_q, precision: 2, delimiter: ",") %><br/>
+            <%= number_to_percentage(profit.inc_pct_py, precision: 2, delimiter: ",") %><br/>
+            <%= number_to_percentage(profit.inc_pct_pq, precision: 2, delimiter: ",") %>
+        </div>
+
+        <div class="col-xs-2 col-sm-1 alignR">
+            <%= 'Max' %><br/>
+            <%= number_with_precision(profit.ticker.stock.max_price, precision: 2, delimiter: ",") %><br/>
+            <%= 'Min' %><br/>
+            <%= number_with_precision(profit.ticker.stock.min_price, precision: 2, delimiter: ",") %>
+        </div>
+
+        <div class="col-xs-2 col-sm-2 alignR">
+            <%= 'Target' %><br/>
+            <% if profit.ticker.consensu %>
+                <%= number_with_precision(profit.ticker.consensu.target_price, precision: 2, delimiter: ",") %><br/>
+                <%= 'B-H-S' %><br/>
+                <%= profit.ticker.consensu.bhs %>
+            <% end %>
+        </div>
+
+        <div class="col-xs-2 col-sm-1 alignR">
+            <%= 'P/E' %><br/>
+            <%= number_with_precision(profit.ticker.stock.pe, precision: 2, delimiter: ",") %><br/>
+            <%= 'P/BV' %><br/>
+            <%= number_with_precision(profit.ticker.stock.pbv, precision: 2, delimiter: ",") %>
+        </div>
+
+        <div class="col-xs-4 col-sm-1 alignR">
+            <%= 'Volume' %><br/>
+            <%= number_with_precision(profit.ticker.stock.daily_volume, precision: 2, delimiter: ",") %><br/>
+            <%= 'Beta' %><br/>
+            <%= number_with_precision(profit.ticker.stock.beta, precision: 2, delimiter: ",") %>
+        </div>
+
+    </div> <!-- end of row -->
+    <br/>
+<% end %>
+<!-- end of loop -->
+<% msg = '-'*50 %>
+
+<p align="Center"><%= msg %></p>
+</footer> <!-- end of cut -->

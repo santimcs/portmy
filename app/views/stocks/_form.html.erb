@@ -1,0 +1,72 @@
+<%= form_with(model: stock, local: true) do |form| %>
+  <% if stock.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(stock.errors.count, "error") %> prohibited this stock from being saved:</h2>
+
+      <ul>
+      <% stock.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :stock_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :market %>
+    <%= form.text_field :market, id: :stock_market %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :stock_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :max_price %>
+    <%= form.text_field :max_price, id: :stock_max_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :min_price %>
+    <%= form.text_field :min_price, id: :stock_min_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pe %>
+    <%= form.text_field :pe, id: :stock_pe %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pbv %>
+    <%= form.text_field :pbv, id: :stock_pbv %>
+  </div>
+
+  <div class="field">
+    <%= form.label :paid_up %>
+    <%= form.text_field :paid_up, id: :stock_paid_up %>
+  </div>
+
+  <div class="field">
+    <%= form.label :market_cap %>
+    <%= form.text_field :market_cap, id: :stock_market_cap %>
+  </div>
+
+  <div class="field">
+    <%= form.label :daily_volume %>
+    <%= form.text_field :daily_volume, id: :stock_daily_volume %>
+  </div>
+
+  <div class="field">
+    <%= form.label :beta %>
+    <%= form.text_field :beta, id: :stock_beta %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

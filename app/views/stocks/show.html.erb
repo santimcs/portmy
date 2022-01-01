@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @stock.name %>
+</p>
+
+<p>
+  <strong>Market:</strong>
+  <%= @stock.market %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @stock.price %>
+</p>
+
+<p>
+  <strong>Max price:</strong>
+  <%= @stock.max_price %>
+</p>
+
+<p>
+  <strong>Min price:</strong>
+  <%= @stock.min_price %>
+</p>
+
+<p>
+  <strong>Pe:</strong>
+  <%= @stock.pe %>
+</p>
+
+<p>
+  <strong>Pbv:</strong>
+  <%= @stock.pbv %>
+</p>
+
+<p>
+  <strong>Paid up:</strong>
+  <%= @stock.paid_up %>
+</p>
+
+<p>
+  <strong>Market cap:</strong>
+  <%= @stock.market_cap %>
+</p>
+
+<p>
+  <strong>Daily volume:</strong>
+  <%= @stock.daily_volume %>
+</p>
+
+<p>
+  <strong>Beta:</strong>
+  <%= @stock.beta %>
+</p>
+
+<%= link_to 'Edit', edit_stock_path(@stock) %> |
+<%= link_to 'Back', stocks_path %>

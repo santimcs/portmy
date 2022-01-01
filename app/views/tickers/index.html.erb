@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tickers</h1>
+<% content_for :title, 'Tickers' %>
+
+<table  id="tickers" class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Full name</th>
+      <th>Sector</th>
+      <th>Subsector</th>
+      <th>Market</th>
+      <th>Website</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tickers.each do |ticker| %>
+      <tr>
+        <td><%= ticker.name %></td>
+        <td><%= ticker.full_name %></td>
+        <td><%= ticker.sector %></td>
+        <td><%= ticker.subsector %></td>
+        <td><%= ticker.market %></td>
+        <% if !ticker.website.nil? %>
+        <td><%= link_to(ticker.website, "http://"+ticker.website, :target => "_new") %></td>
+        <% else %>
+          <td>Dummy</td>
+        <% end %>
+        <td>
+          <%= link_to 'Show', ticker %><br/>
+          <%= link_to 'Edit', edit_ticker_path(ticker) %><br/>
+          <%= link_to 'Destroy', ticker, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ticker', new_ticker_path %>

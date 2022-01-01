@@ -1,0 +1,89 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @portfolio.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @portfolio.date %>
+</p>
+
+<p>
+  <strong>Buy qty:</strong>
+  <%= @portfolio.buy_qty %>
+</p>
+
+<p>
+  <strong>Comp qty:</strong>
+  <%= @portfolio.comp_qty %>
+</p>
+
+<p>
+  <strong>Att qty:</strong>
+  <%= @portfolio.att_qty %>
+</p>
+
+<p>
+  <strong>Buy unit cost:</strong>
+  <%= @portfolio.buy_unit_cost %>
+</p>
+
+<p>
+  <strong>Comp unit cost:</strong>
+  <%= @portfolio.comp_unit_cost %>
+</p>
+
+<p>
+  <strong>Att unit cost:</strong>
+  <%= @portfolio.att_unit_cost %>
+</p>
+
+<p>
+  <strong>Buy cost amt:</strong>
+  <%= @portfolio.buy_cost_amt %>
+</p>
+
+<p>
+  <strong>Comp cost amt:</strong>
+  <%= @portfolio.comp_cost_amt %>
+</p>
+
+<p>
+  <strong>Att cost amt:</strong>
+  <%= @portfolio.att_cost_amt %>
+</p>
+
+<p>
+  <strong>Last sell price:</strong>
+  <%= @portfolio.last_sell_price %>
+</p>
+
+<p>
+  <strong>Sell qty:</strong>
+  <%= @portfolio.sell_qty %>
+</p>
+
+<p>
+  <strong>Target sell price:</strong>
+  <%= @portfolio.target_sell_price %>
+</p>
+
+<p>
+  <strong>Buy method:</strong>
+  <%= @portfolio.buy_method.titleize %>
+</p>
+
+<p>
+  <strong>Sell method:</strong>
+  <%= @portfolio.sell_method.titleize %>
+</p>
+
+<p>
+  <strong>Ticker:</strong>
+  <%= @portfolio.ticker.name %>
+</p>
+
+<%= link_to 'Edit', edit_portfolio_path(@portfolio) %> |
+<%= link_to 'Back', portfolios_path %>
