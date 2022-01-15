@@ -4,7 +4,7 @@ class CreateAll < ActiveRecord::Base
 
     records_ins = 0
     records_upd = 0
-    CSV.foreach(Rails.root.join("db/stocks.csv"), col_sep: '|', headers: false) do |row|
+    CSV.foreach(Rails.root.join("db/stocks.csv"), col_sep: ',', headers: false) do |row|
         tickers = Ticker.where(name: row[0])
         ticker = tickers.first
         if ticker
@@ -47,7 +47,7 @@ class CreateAll < ActiveRecord::Base
 
     records_ins = 0
     records_upd = 0
-    CSV.foreach(Rails.root.join("db/consensus.csv"), col_sep: '|', headers: false) do |row|
+    CSV.foreach(Rails.root.join("db/consensus.csv"), col_sep: ',', headers: false) do |row|
         ticker = Ticker.find_by_name(row[0])
         if ticker
             consensus = Consensu.where(name: row[0])
