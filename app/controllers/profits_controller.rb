@@ -30,7 +30,7 @@ class ProfitsController < ApplicationController
   end  
 
   def list_profits_q4
-      @profits = Profit.where('year == 2021 AND quarter == 4').order(name: :asc)
+      @profits = Profit.order(name: :asc)
   end
 
   def show

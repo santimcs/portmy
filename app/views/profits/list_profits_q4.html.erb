@@ -5,15 +5,15 @@
     <div class="col-xs-3 col-sm-1 alignC">
     </div> <!-- end of col1 -->
     <div class="col-xs-3 col-sm-2 alignR">
-        <%= '20Q4-20Q1' %><br/>
+        <%= '21q4-21q1' %><br/>
         <%= '--ditto--' %><br/>
-        <%= ' 2020 Q4 ' %></br>
+        <%= ' 2021 Q4 ' %></br>
         <%= '--ditto--' %>       
     </div> <!-- end of col2 -->    
     <div class="col-xs-3 col-sm-2 alignR">
-        <%= '19Q4-19Q1' %><br/>
-        <%= '20Q3-19Q4' %><br/>
-        <%= ' 2019 Q4 ' %></br>
+        <%= '20q4-20q1' %><br/>
+        <%= '21q3-20q4' %><br/>
+        <%= ' 2020 Q4 ' %></br>
         <%= ' 2020 Q3 ' %>        
     </div> <!-- end of col3 -->
     <div class="col-xs-3 col-sm-1 alignR">
@@ -63,7 +63,7 @@
             <div class="stock-name"><b><%= link_to(profit.name, ext_lnk, target: "_blank") %></b></div><br/>
             <%= profit.year %><br/>     
             <%= profit.quarter %><br/>  
-            <%= profit.kind %>
+            <%= number_with_precision(profit.ticker.stock.price, precision: 2, delimiter: ",") %>
         </div>
 
         <div class="col-xs-3 col-sm-2 alignR">
