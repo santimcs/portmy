@@ -4,16 +4,16 @@
     <div class="col-xs-3 col-sm-1 alignC">
     </div> <!-- end of col1 -->
     <div class="col-xs-3 col-sm-2 alignR">
-        <%= '21Q2-20Q3' %><br/>
+        <%= '22Q2-21Q3' %><br/>
         <%= '--ditto--' %><br/>
-        <%= ' 2021 Q2 ' %></br>
+        <%= ' 2022 Q2 ' %></br>
         <%= '--ditto--' %>
     </div> <!-- end of col2 -->
     <div class="col-xs-3 col-sm-2 alignR">
-        <%= '20Q2-19Q3' %><br/>
-        <%= '21Q1-20Q2' %><br/>
-        <%= ' 2020 Q2 ' %></br>
-        <%= ' 2021 Q1 ' %>        
+        <%= '21Q2-20Q3' %><br/>
+        <%= '22Q1-21Q2' %><br/>
+        <%= ' 2021 Q2 ' %></br>
+        <%= ' 2022 Q1 ' %>        
     </div> <!-- end of col3 -->
     <div class="col-xs-3 col-sm-1 alignR">
         <%= 'Inc./' %><br/>
@@ -68,7 +68,8 @@
 
         <div class="col-xs-3 col-sm-2 alignR">
             <%= number_with_precision(profit.latest_amt_y, precision: 0, delimiter: ",") %><br/><br/>
-            <%= number_with_precision(profit.q_amt_c, precision: 0, delimiter: ",") %>
+            <%= number_with_precision(profit.q_amt_c, precision: 0, delimiter: ",") %><br/>
+            <%= profit.ticker.market %>
         </div>
 
         <div class="col-xs-3 col-sm-2 alignR">

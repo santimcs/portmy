@@ -2,7 +2,7 @@ require 'csv'
 class CrtTickers < ActiveRecord::Base
 	records_ins = 0
 	records_upd = 0
-	CSV.foreach(Rails.root.join("db/tickers.csv"), { col_sep: '|', headers: true}) do |row|
+	CSV.foreach(Rails.root.join("db/tickers.csv"), { col_sep: ',', headers: true}) do |row|
 		tickers = Ticker.where(name: row[0])
 		ticker = tickers.first
 		if ticker
