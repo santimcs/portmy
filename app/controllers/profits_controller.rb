@@ -18,11 +18,12 @@ class ProfitsController < ApplicationController
   end
 
   def list_profits_q1
-      @profits = Profit.where('year == 2022 AND quarter >= 1').order(name: :asc)
+      @profits = Profit.order(name: :asc)
   end
 
   def list_profits_q2
-      @profits = Profit.order(name: :asc)
+      # @profits = Profit.order(name: :asc)
+      @profits = Profit.where('year == 2023 AND quarter >= 2').order(name: :asc, quarter: :desc)
       # @tickers = @profits.ticker
       # @consensu = @ticker.consensu   
       # @portfolio = @ticker.portfolio            
@@ -35,7 +36,7 @@ class ProfitsController < ApplicationController
   end  
 
   def list_profits_q4
-      @profits = Profit.order(name: :asc)
+    @profits = Profit.where('year == 2022 AND quarter = 4').order(name: :asc, quarter: :desc)
   end
 
   def show
